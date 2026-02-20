@@ -28,13 +28,16 @@ public class Repository {
             space.acquire();
             lock.lock();
             tasks.push(job);
-            System.out.printf("added job: %d\n", avalibleJobs.availablePermits());
+
             addedJob = true;
         }catch (Exception e){
             Thread.currentThread().interrupt();
         }finally {
             lock.unlock();
-            if(addedJob) avalibleJobs.release();
+            if(addedJob) {
+                avalibleJobs.release();
+                System.out.printf("added job: %d\n", avalibleJobs.availablePermits());
+            }
         }
     }
 
@@ -46,7 +49,6 @@ public class Repository {
             avalibleJobs.acquire();
             lock.lock();
             Job job = tasks.pop();
-            System.out.printf("took job: %d\n", avalibleJobs.availablePermits());
             gotJob = true;
             return job;
         }catch (Exception e){
@@ -54,7 +56,10 @@ public class Repository {
             return null;
         }finally {
             lock.unlock();
-            if(gotJob) space.release();
+            if(gotJob) {
+                space.release();
+                System.out.printf("took job: %d\n", avalibleJobs.availablePermits());
+            }
         }
     }
 
