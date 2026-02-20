@@ -4,7 +4,6 @@ public class Main {
 
         for (int i = 0; i < 5; i++){
             Thread prod = new Thread(new Producer());
-
             prod.start();
         }
 
