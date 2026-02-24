@@ -1,4 +1,4 @@
-public class Worker implements Runnable{
+public class LocalWorker implements Runnable{
 
     @Override
     public void run() {

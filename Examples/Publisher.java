@@ -1,3 +1,6 @@
+/*
+package Examples;
+
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -9,7 +12,7 @@ import javax.swing.*;
  *
  * @author javiergs
  * @version 2.0
- */
+
 public class Publisher extends JPanel implements Runnable {
 	
 	private String broker;
@@ -66,3 +69,4 @@ public class Publisher extends JPanel implements Runnable {
 		}
 	}
 }
+*/

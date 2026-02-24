@@ -1,3 +1,5 @@
+/*package Examples;
+
 import org.eclipse.paho.client.mqttv3.*;
 
 import java.awt.*;
@@ -7,7 +9,7 @@ import java.awt.*;
  *
  * @author javiergs
  * @version 2.0
- */
+
 public class Subscriber implements Runnable, MqttCallback {
 
 	private String broker;
@@ -94,3 +96,4 @@ public class Subscriber implements Runnable, MqttCallback {
 	}
 
 }
+*/

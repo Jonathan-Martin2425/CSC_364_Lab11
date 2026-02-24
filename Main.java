@@ -8,7 +8,7 @@ public class Main {
         }
 
         for (int i = 0; i < 1; i++){
-            Thread worker = new Thread(new Worker());
+            Thread worker = new Thread(new LocalWorker());
 
             worker.start();
         }

@@ -1,6 +1,4 @@
-import jdk.dynalink.Operation;
-
-public class Job{
+public class Job {
     public Integer exp1;
     public Integer exp2;
     public Operations operation;
