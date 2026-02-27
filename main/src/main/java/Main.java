@@ -12,19 +12,19 @@ public class Main {
 
         System.out.println("Outsourcer running");
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Thread prod = new Thread(new Producer());
             prod.start();
         }
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 5; i++) {
             Thread prod = new Thread(new RemoteWorker(broker));
             prod.start();
         }
-        //for (int i = 0; i < 1; i++) {
-        //    Thread worker = new Thread(new LocalWorker());
-        //    worker.start();
-        //}
+        for (int i = 0; i < 3; i++) {
+            Thread worker = new Thread(new LocalWorker());
+            worker.start();
+        }
 
         System.out.println("Local system running: Producers + LocalWorker + Outsourcer");
     }

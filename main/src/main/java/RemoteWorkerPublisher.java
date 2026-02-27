@@ -16,10 +16,10 @@ public class RemoteWorkerPublisher {
 
     public void sendRequest(){
         try {
-            String topic = "awesomecsc364/work/request/";
+            String topic = "awesomecsc364/work/request";
 
             String json = String.format(
-                    "{\"workerId\":%s,\"capacity\":%d,}",
+                    "{\"workerId\":\"%s\",\"capacity\":\"%d\"}",
                     workerId, 1
             );
 

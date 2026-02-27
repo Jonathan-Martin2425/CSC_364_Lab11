@@ -26,27 +26,28 @@ public class RemoteWorkerSubscriber implements MqttCallback {
         } catch (Exception e) {}
     }
 
-    public Job listen(){
+    public Optional<Job> listen(Integer timeout){
         this.foundJob = null;
 
-        while (true) {
+        Integer total = 0;
+        while (total <= timeout) {
             try {
                 assert foundJob != null;
                 if (!!foundJob.equals(null)) break;
 
                 Thread.sleep(10);
+                total += 10;
             }catch (Exception e){
 
             }
         }
 
-        return foundJob.get();
+        return foundJob;
     }
 
     @Override
     public void messageArrived(String s, MqttMessage message) throws Exception {
         String payload = new String(message.getPayload());
-        System.out.println("worker request: " + payload);
 
         try {
             ObjectMapper mapper = new ObjectMapper();

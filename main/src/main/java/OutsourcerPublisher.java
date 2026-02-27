@@ -17,7 +17,7 @@ public class OutsourcerPublisher {
             String topic = "awesomecsc364/work/assign/" + workerId;
 
             String json = String.format(
-                    "{\"exp1\":%d,\"exp2\":%d,\"op\":\"%s\"}",
+                    "{\"exp1\":\"%d\",\"exp2\":\"%d\",\"operation\":\"%s\"}",
                     job.exp1, job.exp2, job.operation
             );
 

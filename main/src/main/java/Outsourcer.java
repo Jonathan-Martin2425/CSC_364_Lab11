@@ -1,3 +1,6 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -7,6 +10,7 @@ public class Outsourcer {
 
     private final Queue<Job> jobQueue = new LinkedList<>();
     private OutsourcerPublisher publisher;
+    private ObjectMapper mapper = new ObjectMapper();
 
     private Outsourcer() {}
 
@@ -24,22 +28,28 @@ public class Outsourcer {
     }
 
     public void handleRequest(String json) {
-        String workerId = parseWorkerId(json);
-        int capacity = parseCapacity(json);
+        try {
+            String workerId = parseWorkerId(json);
+            int capacity = parseCapacity(json);
 
-        for (int i = 0; i < capacity; i++) {
-            Job job = jobQueue.poll();
-            if (job == null) break;
+            for (int i = 0; i <= capacity; i++) {
+                Job job = Repository.getInstance().getJob();
+                if (job == null) break;
 
-            publisher.assignJob(workerId, job);
+                publisher.assignJob(workerId, job);
+            }
+        } catch (Exception e) {
+            System.out.println("outsourcer parsing errored");
         }
     }
 
-    private String parseWorkerId(String json) {
-        return json.split("\"workerId\":\"")[1].split("\"")[0];
+    private String parseWorkerId(String json) throws JsonProcessingException {
+        RemoteWorkerPayload payload = mapper.readValue(json, RemoteWorkerPayload.class);
+        return payload.workerId;
     }
 
-    private int parseCapacity(String json) {
-        return Integer.parseInt(json.split("\"capacity\":")[1].split("}")[0]);
+    private int parseCapacity(String json) throws JsonProcessingException {
+        RemoteWorkerPayload payload = mapper.readValue(json, RemoteWorkerPayload.class);
+        return payload.capacity;
     }
 }
