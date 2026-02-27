@@ -1,4 +1,5 @@
-import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class OutsourcerPublisher {
 
@@ -8,7 +9,7 @@ public class OutsourcerPublisher {
         String clientId = MqttClient.generateClientId();
         client = new MqttClient(broker, clientId);
         client.connect();
-        System.out.println("otsourcer publisher connected");
+        System.out.println("outsourcer publisher connected");
     }
 
     public void assignJob(String workerId, Job job) {

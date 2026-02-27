@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.paho.client.mqttv3.*;
 
 public class OutsourcerSubscriber implements Runnable, MqttCallback {
