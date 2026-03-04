@@ -1,4 +1,7 @@
 public class Main {
+    // Project members:
+    //      Jonathan Martin
+    //      Bernardo Lopez
 
     public static void main(String[] args) throws Exception {
 
